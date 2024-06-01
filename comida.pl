@@ -34,3 +34,41 @@ hecho = clausula
 
 pastas(involtinis).
 % pastas(berenjenasEnEscabeche).
+
+%Predicados poliadicos
+/*
+Aridad 2
+Aridad n
+*/
+come(juan, ravioles).
+come(brenda, fideos).
+gusta(brenda, fideos).
+/*CONSULTA
+? come(brenda, fideos).
+true
+
+? come(fideos, brenda).
+false
+
+%Las relaciones no son bidireccionales por defecto
+
+? gusta(brenda, fideos).
+true
+
+? gusta(brenda, juan).
+false
+
+? come(brenda, fideos, ricos).
+false
+*/
+
+%Definicion por extension
+
+animal(tigre).
+animal(oso).
+animal(elefante).
+
+%Es como decir Animales = { tigre, oso, elefante }
+
+planeta(venus).
+planeta(tierra).
