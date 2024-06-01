@@ -1,13 +1,13 @@
 %%%%%%Defino (defino cosas ciertas)
-humano(platón).
-humano(aristóteles).
-humano(sócrates).
+humano(platon).
+humano(aristoteles).
+humano(socrates).
 %%%%%%Variables
 mortal(Alguien) :- humano(Alguien).
 mortal(elGalloDeAsclepio).
 %%%%%%
-maestro(sócrates, platón).
-maestro(platón, aristóteles).
+maestro(socrates, platon).
+maestro(platon, aristoteles).
 %%%%%%Condicional
 groso(Alguien):-
     maestro(Alguien, Uno),
@@ -39,6 +39,8 @@ groso(Alguien):-
 
 %%% Un Predicado, MUCHAS Consultas
 ?- maestro(_, _).  ---> ¿Hay alguien que sea maestro de alguien?
+   true;
+   true.
 */
 
 
