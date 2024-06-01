@@ -1,0 +1,33 @@
+Regla = "si todos los hombres son mortales"
+Hecho = "y socrates es hombre"
+"entonces Socrates es Mortal"
+
+Regla = "si llueve se moja el pasto"
+Hecho = "llovio"
+"el pasto se mojo"
+
+Existe un hombre que piso la luna
+Lucas es un hombre y fue a la luna
+Lucas piso la luna
+
+Hecho = cosas que sucedieron    seRego(pasto).
+sin hechos no se puede inferir
+Regla = premisa entonces conclusion   seMojo(Lugar):-seRego(lugar). estan cuantificadas existencialmente
+Base de conocimiento = conjunto de reglas y hechos
+Principio de Universo abierto
+Principio de Universo Cerrado
+%No importa el orden en donde defina las premisas
+%
+                 Individuo = empieza con Minuscula
+Predicado humano(sócrates).
+          verbo  sustantivo
+Variable = empieza con mayus "Alguien"
+           esMortal(Alguien)
+sustantivo sin asignacion sirve para consultar las afirmaciones de un mismo Predicado
+_ el guion bajo es variable anónima
+
+Prolog
+make. = recompila
+r = reintentar
+
+La descripcion del problema es la solucion del mismo

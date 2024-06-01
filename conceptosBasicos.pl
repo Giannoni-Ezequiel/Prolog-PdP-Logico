@@ -3,6 +3,7 @@ humano(platon).
 humano(aristoteles).
 humano(socrates).
 %%%%%%Variables
+% si humano(Alguien) entonces mortal(Alguien)
 mortal(Alguien) :- humano(Alguien).
 mortal(elGalloDeAsclepio).
 %%%%%%
