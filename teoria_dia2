@@ -1,0 +1,73 @@
+INVERSIBILIDAD Y NEGACION
+
+INVERSIBILIDAD
+que un predicado sea inversible significa que los argumentos del mismo
+pueden usarse tanto de entrada(con un individuo) como de salida(con una variable libre).
+CONSOLA/CONSULTA
+?- programaEn(nahuel, Lenguaje).
+Lenguaje = javascript.
+?- programaEn(Persona, haskell).
+Persona = juan;
+Persona = caro.
+?- programaEn(Persona, Lenguaje).
+Persona = nahuel,
+Lenguaje = javascript;
+Persona = juan,
+Lenguaje = haskell.
+
+programaEn/2 es inversible tanto para la persona como para el lenguaje.
+
+HECHOS MUY GENERICOS
+programaEn(_,c).
+?- programaEn(nahuel, c).
+true.
+?- programaEn(nahuel, Lenguaje).
+Lenguaje = javascript;
+Lenguaje = c.
+?- programaEn(_, c).
+true.
+?- programaEn(lassie, c). %%el perro
+true.
+?- programaEn(Persona, c). %deberia devolver quienes programan en c
+true.
+%programaEn/2 ya no es inversible para la persona
+%es un problema para la inversibilidad
+
+ACOTAR EL Universo
+con reglas
+programaEn(Persona,c):-
+    persona(Persona).
+
+persona(nahuel).
+persona(juan).
+persona(caro).
+%% estos 3 se llama a nivel macro GENERADOR
+?- programaEn(lassie, c).
+false.
+
+NEGACION
+¿Es cierto que Nahuel no programa en Ruby?
+?- not(programaEn(nahuel,ruby)).
+true.
+?- not(programaEn(_,ruby)).
+true.
+
+predicado de aridad 1 = not/1.
+niega el valor de verdad de una CONSULTA
+como recibe una consulta en vez de un individuo, es de orden superior.
+es posible negar consultas individuales o existenciales.
+
+?- not(programaEn(Persona,ruby)).
+true.
+% no es inversible, no nos dice quienes no cumplen la consulta.
+
+not((programaEn(Alguien,Lenguaje),
+        Alguien \= Persona)).
+
+
+RESUMEN: CASOS DE NO INVERSIBILIDAD
+hechos con bindVariables
+comparacion por distinto 
+negacion 
+>, >=, <, =<
+is/2
