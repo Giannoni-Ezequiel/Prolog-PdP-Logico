@@ -27,6 +27,7 @@ sustantivo sin asignacion sirve para consultar las afirmaciones de un mismo Pred
 _ el guion bajo es variable anónima
 
 Prolog
+swipl = compilar
 make. = recompila
 r = reintentar
 
