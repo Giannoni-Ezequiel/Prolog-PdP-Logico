@@ -1,0 +1,77 @@
+
+
+/*enemigoPais(Pais):-
+    sonLimitrofes(Pais,Enemigo),
+    ocupa(Color,Pais,_),
+    ocupa(OtroPais,Enemigo,_),
+    Color /= OtroColor.
+No funciona, solo tira true o false. no es reversibles
+*/
+
+enemigoPais(P).
+%?- P= Argentina.
+enemigoPais(P,E)
+%?- E= Brasil.
+
+/*prolog tiene una aridad mayor que haskell*/
+/*
+  Totalmente inversible: 4 consultas, la mas generica (_,_)
+  Parcialmente inversible: si alguna consulta no cumple
+*/
+%prueba en orden
+    enemigoPais(Pais,Enemigo):-
+        sonLimitrofes(Pais,Enemigo),
+        ocupa(Color,Pais,_),
+        ocupa(OtroPais,Enemigo,_),
+        Color /= OtroColor.
+
+
+%el primer ocupa esta libre, es variable nueva, entonces es una incognita
+%variable ligada al not, pone existe afuera, e interpreto como existe. Ligada=la primera vez q aparece. 
+%existe un C, que esta complicado
+%para un solo color
+
+
+fuerte(C):-
+    ocupa(C,_,_),
+    not(aux(C)).
+aux(C):-ocupa(C,P), complicado(P).
+
+%Todos los paises que ocupan se estan complicados
+fuerte(C):-
+    ocupa(C,P,_),
+    not(complicado(P)).
+/*
+    PARA TODO
+        FORALL
+  */
+fuerte(C):-
+    ocupa(C,_,_),
+    not((ocupa(C,P,_),
+        complicado(P))).
+fuerte(C):-
+    ocupa(C,_,_),
+    forall(ocupa(C,P,_),
+    not(complicado(P))
+    ).
+BACKTRAKING
+ evalua en orden 
+
+Orden superior: Recibe por parametros la consulta
+                Nunca ligan variables
+
+    REVERSIBLE
+    conquistar(E,C):-
+    pais(_,C),
+    ocupa(E,_),
+    forall(pais(P,C),
+           ocupa(E,P)).
+    NO REVERSIBLE
+    conquistar(E,C):-
+    
+    forall(pais(P,C),
+           ocupa(E,P)).
+
+el forall y el not no son predicados que generen muchos caminos.
+
+PLogico: no hay efecto, no hay temporalidad
