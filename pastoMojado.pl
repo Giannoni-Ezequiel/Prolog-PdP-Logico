@@ -1,5 +1,5 @@
 clima(bsas,lluvia,10).
-climar(cordoba,sol,23).
+clima(cordoba,sol,23).
 clima(rosario,lluvia,100).
 
 seRego(pasto).

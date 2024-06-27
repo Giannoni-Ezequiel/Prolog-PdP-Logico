@@ -1,3 +1,5 @@
+UNIVERSO CERRADO
+
 Regla = "si todos los hombres son mortales"
 Hecho = "y socrates es hombre"
 "entonces Socrates es Mortal"
@@ -26,7 +28,26 @@ Variable = empieza con mayus "Alguien"
 sustantivo sin asignacion sirve para consultar las afirmaciones de un mismo Predicado
 _ el guion bajo es variable anónima
 
+Consultas individuales
+¿Es cierto que Lassie es mortal?
+¿Es cierto que ...?
+
+Consulta existencial . = una respuesta posible ; mas de una respuesta
+¿Existe alguien que sea mortal?
+¿Quienes son mortales?
+
+Conjuncion = cada valor separado por coma
+hermano(Uno, Otro):-
+   padre(Padre, Uno),
+   padre(Padre, Otro).
+   Uno \= Otro.
+Disyuncion = distintas clausulas para mismo predicado
+ubicacion(pasto, sas).
+ubicacion(vereda,cordoba).
+ubicacion(jardin,rosario).
+
 Prolog
+swipl = compilar
 make. = recompila
 r = reintentar
 
