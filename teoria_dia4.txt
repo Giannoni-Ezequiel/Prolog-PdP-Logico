@@ -1,0 +1,91 @@
+Lista:-tiene cabeza y cola
+      -sirve para ordenar, contar
+[X/XS]
+[3, 4, 5, 6, 9]
+pepito(X)
+pepito(3)
+pepito([X/XS])
+
+cabeza([X/XS],X).
+
+nn([X/XS],C):-
+    nn(XS,D),
+    C is D + 1.
+nn([],0).
+
+%length([1,5,8],3)
+
++sin lista:
+pais(arg)
+pais(bra)
+pais(uru)
++con lista:
+paises(america,[arg,bra,uru])
+cuantosPaises(Continente,Cantidad):-
+    paises(Continente,Paises),
+    length(Paises,Cantidad).
+%cuantosPaises(america, 4)
+ false
+
+ REPL
+ read evaluate print log
+
+ sumlist([3,4,5], 12)
+ relaciona una lista de numeros
+  %sumlist([3,4,5], X)
+  %X = 12
+
+ member(8, [3,4,5])
+ es cierto que pertenece a la lista
+  %member(3,L)
+  no es inversible
+
+ length(X,3)
+ %parcialmente inversible
+
+ append(L1,L2,L3)
+%relaciona listas/ y arma un o varios conjuntos
+
+nth1(N,[arg,bra,uru],X).
+%busca por indice
+
+
+ Inversibilidad:
+ No hace lo que yo quiero
+ No es consistente
+
+ ?.-length(L,3),member(3,L),member(4,L),member(5,L),sumlist(L,12)
+
+%P = {X/X cumplealgo}
+?- findall(X, condicion, P).
+
+functor(tupla)
+
+persona(juan,bsas,20,1,2000).
+esMayor(P):-
+    persona(P,_,D,M,A),
+    edad(D,M,A,E),
+    E > 18.
+
+persona(juan,bas,fecha(20,1,200)). %con functor
+
+esMayor(P):-
+    persona(P,_,F),
+    edad(F,E),
+    E > 18.
+
+edad(fecha(D,M,A),E):-
+    E is 2024 - A,
+    M>6,
+    D.
+    edad(fecha(_,_,19)).
+
+persona(maria,cba,dia(158,2020)).
+
+edad(fecha(D,M,A),E):-
+    E is 2024 - A.
+edad(dia(X,Y),E):-
+
+%Polimorfismo: poder convivir distintas formas de representar datos, y aun asi representara algo concreto.
+
+fecha(00,[...])
