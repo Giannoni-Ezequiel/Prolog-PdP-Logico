@@ -157,3 +157,37 @@ fuerte(C):-
     forall(ocupa(C,P,_),
     not(complicado(P))
     ).
+
+paises(america,[uruguay,brasil,argentina]).
+paises(europa,[espania,francia,italia,portugal]).
+
+cuantosPaises(C,Cant):-
+    paises(C,Paises),
+    length(Paises,Cant).
+
+tieneMasPaisesQue(C1,C2):-
+    cuantosPaises(C1,Cant1),
+    cuantosPaises(C2,Cant2),
+    Cant1 > Cant2. 
+
+
+pais(america,uruguay).
+pais(america,brasil).
+pais(america,argentina).
+
+continente(america).
+continente(europa).
+continente(africa).
+
+continentePaises(Continente,Paises):- 
+    continente(Continente),
+    findall(Pais, pais(Continente,Pais), Paises).
+
+todosLosPaises(Paises):-
+    findall(Pais, pais(Contienente,Pais), Paises). %no va
+todosLosPaises(Paises):-
+    findall(Pais, pais(_,Pais), Paises). %va
+
+cuantosPaises(C,Cant):-
+    paises(C,Paises),
+    length(Paises,Cant).
