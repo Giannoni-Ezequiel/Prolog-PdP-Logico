@@ -3,6 +3,7 @@ INVERSIBILIDAD Y NEGACION
 INVERSIBILIDAD
 que un predicado sea inversible significa que los argumentos del mismo
 pueden usarse tanto de entrada(con un individuo) como de salida(con una variable libre).
+
 CONSOLA/CONSULTA
 ?- programaEn(nahuel, Lenguaje).
 Lenguaje = javascript.
