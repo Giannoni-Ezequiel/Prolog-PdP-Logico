@@ -59,12 +59,13 @@ nuevoEpisodio(Heroe, Villano, Extra, Dispositivo):-
 %%%Los personajes deben haber aparecido en 
 %%%alguno de los episodios anteriores y obviamente ser diferentes
 personajesDeNuevoEpisodio(Heroe, Villano, Extra):-
-     apareceEn( Heroe, _, _),
-     apareceEn( Villano, _, _),
-     apareceEn( Extra, _, _),
+     apareceEn(Heroe, _, _),
+     apareceEn(Villano, _, _),
+     apareceEn(Extra, _, _),
      Heroe \= Villano,
      Villano \= Extra,
      Extra \= Heroe.
+     %falta acotar universo de episodios
 
 %%%%el héroe tiene que ser un jedi (un maestro que estuvo alguna 
 %%%%vez en el lado luminoso) que nunca se haya pasado al lado oscuro.
