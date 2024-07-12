@@ -62,11 +62,16 @@ personajesDeNuevoEpisodio(Heroe, Villano, Extra):-
      apareceEn(Heroe, _, _),
      apareceEn(Villano, _, _),
      apareceEn(Extra, _, _),
-     Heroe \= Villano,
-     Villano \= Extra,
-     Extra \= Heroe.
+     distintosPersonajes(Heroe, Villano, Extra),
+     maestroJedi(Heroe),
+    ladoOscuro(Villano),
+    esExotico(Extra).
      %falta acotar universo de episodios
-
+     distintosPersonajes(Heroe, Villano, Extra):-
+        Heroe \= Villano,
+        Villano \= Extra,
+        Heroe \= Extra.
+    
 %%%%el héroe tiene que ser un jedi (un maestro que estuvo alguna 
 %%%%vez en el lado luminoso) que nunca se haya pasado al lado oscuro.
 maestroJedi(Heroe):-
@@ -93,7 +98,7 @@ vinculoEstrecho(Extra, Heroe, Villano):-
     Extra\=Heroe,
     Extra\=Villano,
     forall(apareceEn(Extra, Episodio, _), aparecioAlguno(Episodio, Heroe, Villano)).
-aparecioAlguno(Episodio, Heroe, _):-
+aparecioAlguno(Episodio, Heroe, Villano):-
     apareceEn(Heroe, Episodio, _);
     apareceEn(_, Episodio, Villano).
 
@@ -124,10 +129,10 @@ robotValido(Extra):-
      caracterizacion(Extra,ser(_,_)),
      forall(caracterizacion(Extra,ser(Aspecto,_)),aspectoDelSer(Aspecto)).
  aspectoDelSer(Aspecto):-
-     caracterizacion(Extra,ser(_,Aspecto)),
+     caracterizacion(_,ser(_,Aspecto)),
      Aspecto > 15.
  aspectoDelSer(Aspecto):-
-     caracterizacion(Extra,ser(Aspecto,_)),
+     caracterizacion(_,ser(Aspecto,_)),
      Aspecto == desconocido.
 
 
@@ -154,7 +159,7 @@ apareceEn3PelisOMas(Dispositivo):-
 %   true.
 
 %3
-caracterizacion(finn,humano).
-caracterizacion(finn,ser(_,5,aspectoActual)).
+
+
 
  
