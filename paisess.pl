@@ -153,10 +153,13 @@ limita(indonesia, australia).
 limita(nueva_guinea, australia).
 
 fuerte(C):-
-    ocupa(C,_,_),
+    ocupa(C,P,_),
     forall(ocupa(C,P,_),
-    not(complicado(P))
-    ).
+           not(complicado(P))).
+
+ocupa(C,P,_).
+
+complicado(P).
 
 paises(america,[uruguay,brasil,argentina]).
 paises(europa,[espania,francia,italia,portugal]).
@@ -169,7 +172,6 @@ tieneMasPaisesQue(C1,C2):-
     cuantosPaises(C1,Cant1),
     cuantosPaises(C2,Cant2),
     Cant1 > Cant2. 
-
 
 pais(america,uruguay).
 pais(america,brasil).

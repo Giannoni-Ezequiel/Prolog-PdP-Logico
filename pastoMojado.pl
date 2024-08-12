@@ -25,7 +25,7 @@ seMojo(Lugar):-seRego(Lugar).
 seMojo(Lugar):-
     alAireLibre(Lugar),
     ubicacion(Lugar, Ciudad),
-    clima(lluvia,Cantidad),
+    clima(_,lluvia,Cantidad),
     Cantidad > 20.
 
 llovioMucho(Ciudad):-
