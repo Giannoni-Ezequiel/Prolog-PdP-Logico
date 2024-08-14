@@ -18,6 +18,8 @@ pais(peru, america_del_sur).
 pais(brasil, america_del_sur).
 pais(argentina, america_del_sur).
 
+pais([venezuela, peru, brasil, argentina], america_del_sur).
+
 pais(islandia, europa).
 pais(escandinavia, europa).
 pais(gran_bretana, europa).
@@ -157,9 +159,9 @@ fuerte(C):-
     forall(ocupa(C,P,_),
            not(complicado(P))).
 
-ocupa(C,P,_).
+ocupa(america,argentina,verde).
 
-complicado(P).
+complicado(brasil).
 
 paises(america,[uruguay,brasil,argentina]).
 paises(europa,[espania,francia,italia,portugal]).
@@ -171,11 +173,9 @@ cuantosPaises(C,Cant):-
 tieneMasPaisesQue(C1,C2):-
     cuantosPaises(C1,Cant1),
     cuantosPaises(C2,Cant2),
+    C1 \= C2,
     Cant1 > Cant2. 
 
-pais(america,uruguay).
-pais(america,brasil).
-pais(america,argentina).
 
 continente(america).
 continente(europa).
@@ -186,7 +186,8 @@ continentePaises(Continente,Paises):-
     findall(Pais, pais(Continente,Pais), Paises).
 
 todosLosPaises(Paises):-
-    findall(Pais, pais(Contienente,Pais), Paises). %no va
+    pais(Pais,Continente),
+    findall(Pais, pais(Continente,Pais), Paises). %no va
 todosLosPaises(Paises):-
     findall(Pais, pais(_,Pais), Paises). %va
 
