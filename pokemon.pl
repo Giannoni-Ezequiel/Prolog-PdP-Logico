@@ -57,7 +57,7 @@ esMisterioso(Pokemon):-
     pokemon(Pokemon,_),
     not(entrenador(_, Pokemon)).
 
-/*
+
 %%Parte 2. Movimientos
 
 %fisicos(Potencia). fisicos(Nombre,Potencia).
@@ -69,28 +69,71 @@ movimientos(Movimiento, Tipo(Potencia)).
 movimientos(Movimiento, Potencia).
 movimientos(Movimiento, Ataque).
 */
-/*fisicos(mordedura).
-especiales(impactrueno, electrico).
 
-movimiento(pikachu, fisico, mordedura(95)).
-movimiento(pikachu, fisico(mordedura,95)).
-movimiento(pikachu, especial, impactrueno(40)).
-movimiento(pikachu, defensivo, 0).
-movimientos(Pokemon, Tipo, Ataque):-
-    movimiento(Pokemon, Tipo, Ataque),
-    esEspecial(Tipo, Ataque),
-    pokemones(Pokemon, _).
-esEspecial(Tipo):-
-    pokemones(_, Tipo)*/
-/*movimiento(pikachu,mordedura(fisico,95)).
-fisicos(Pokemon):-
-    movimiento(Pokemon, Movimiento(fisico,Potencia)).
-movimientos(Movimiento, Pokemon):-
-    pokemones(Pokemon, Tipo),
-    fisicos(Potencia).
-movimientos(Movimiento, Pokemon):-
-    pokemones(Pokemon, Tipo),
-    especiales(Potencia, Tipo).
-movimientos(Movimiento, Pokemon):-
-    pokemones(Pokemon, Tipo),
-    movimientos(Movimiento, Pokemon).*/
+
+% Pikachu 
+movimiento(pikachu, fisico(mordedura, 95)).
+movimiento(pikachu, especial(impactrueno, 40, electrico)).
+
+% Charizard
+movimiento(charizard, especial(garraDragon, 100, dragon)).
+movimiento(charizard, fisico(mordedura, 95)).
+
+% Blastoise
+movimiento(blastoise, defensivo(proteccion, 10)).
+movimiento(blastoise, fisico(placaje, 50)).
+
+% Arceus
+movimiento(arceus, especial(impactrueno, 40, electrico)).
+movimiento(arceus, especial(garraDragon, 100, dragon)).
+movimiento(arceus, defensivo(proteccion, 10)).
+movimiento(arceus, fisico(placaje, 50)).
+movimiento(arceus, defensivo(alivio, 100)).
+
+% Punto 1
+
+% danioAtaque(Movimiento, Daño).
+danioAtaque(fisico(_, Potencia), Potencia).
+danioAtaque(defensivo(_, _), 0).
+danioAtaque(especial(_, Potencia, Tipo), Danio):-
+    multiplicadorTipo(Tipo, Multiplicador),
+    Danio is Potencia * Multiplicador. 
+
+multiplicadorTipo(Tipo, 1.5):-
+    tipoBasico(Tipo).
+
+multiplicadorTipo(dragon, 3).
+multiplicadorTipo(Tipo, 1):-
+    Tipo \= dragon, 
+    not(tipoBasico(Tipo)).
+
+tipoBasico(fuego).
+tipoBasico(agua).
+tipoBasico(planta).
+tipoBasico(normal).
+
+% Punto 2
+
+capacidadOfensiva(Pokemon, CapacidadOfensiva):-
+    pokemons(Pokemon),
+    findall(Danio, danioAtaquePokemon(Pokemon, Danio), Danios),
+    sumlist(Danios, CapacidadOfensiva).
+pokemons(Pokemon):- pokemon(Pokemon,_).
+
+danioAtaquePokemon(Pokemon, Danio):-
+    movimiento(Pokemon, Ataque), 
+    danioAtaque(Ataque, Danio).
+
+% Punto 3
+
+entrenadorPicante(Entrenador):-
+    entrenadores(Entrenador),
+    forall(entrenador(Entrenador, Pokemon), pokemonPicante(Pokemon)).
+entrenadores(Entrenador):- entrenador(Entrenador,_).
+pokemonPicante(Pokemon):-
+    capacidadOfensiva(Pokemon, CapacidadOfensiva),
+    CapacidadOfensiva > 200.
+
+pokemonPicante(Pokemon):-
+    esMisterioso(Pokemon).
+
